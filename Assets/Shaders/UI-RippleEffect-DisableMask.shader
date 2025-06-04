@@ -39,7 +39,7 @@
 
             // 固定大小数组，存储4个波纹的中心点（UV坐标系）
             // 在C#端通过Material.SetVectorArray接口赋值
-            float2 _RippleCenters[4];
+            float4 _RippleCenters[4];
 
             // 对应4个波纹的起始时间，单位为秒
             // 在C#端通过Material.SetFloatArray接口赋值
@@ -104,7 +104,7 @@
 
                     float rippleDistortion = 0.0; // 当前波纹扰动贡献
 
-                    float2 dir = uv - _RippleCenters[idx]; // 片元到波纹中心的方向向量
+                    float2 dir = uv - _RippleCenters[idx].xy; // 片元到波纹中心的方向向量
                     dir.x *= _AspectRatio; // 补偿非正方形拉伸
 
                     // 每个波纹内部包含最多3个同心波纹圈，间隔rippleInterval
@@ -156,7 +156,7 @@
                 float minDist = 10000.0;
                 for (int idx = 0; idx < 4; idx++)
                 {
-                    float dist = length(uv - _RippleCenters[idx]);
+                    float dist = length(uv - _RippleCenters[idx].xy);
                     if (dist < minDist)
                         minDist = dist;
                 }
