@@ -159,9 +159,9 @@
 
                 // 计算距离所有波纹中心的最小距离，用于波纹强度的衰减
                 float minDist = 10000.0;
-                for (int idx = 0; idx < 4; idx++)
+                for (int idx1 = 0; idx1 < 4; idx1++)
                 {
-                    float dist = length(uv - _RippleCenters[idx].xy);
+                    float dist = length(uv - _RippleCenters[idx1].xy);
                     if (dist < minDist)
                         minDist = dist;
                 }
